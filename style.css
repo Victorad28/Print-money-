@@ -1,3 +1,9 @@
+/* 
+  Project: CSS Glowing Button
+  Created: Sunday, 06 March 2022
+  Author: Jamshid Elmi 
+  Tutorial: https://youtu.be/b_8fHNIHFk4
+*/
 html, body {
   display: flex;
   justify-content: center;
@@ -30,7 +36,7 @@ html, body {
   top: 0;
   border-radius: 10px;
 }
-/* glow */
+/* glow - CHANGED: Removed hover requirement */
 .btn::before {
   content: "";
   background: linear-gradient(
@@ -47,9 +53,8 @@ html, body {
   height:  calc(100% + 4px);
   filter: blur(8px);
   animation: glowing 20s linear infinite;
-  transition: opacity .3s ease-in-out;
   border-radius: 10px;
-  opacity: 0;
+  opacity: 1; /* CHANGED: Set to 1 to always show glow */
 }
 
 @keyframes glowing {
@@ -58,10 +63,7 @@ html, body {
   100% {background-position: 0 0;}
 }
 
-/* hover */
-.btn:hover::before {
-  opacity: 1;
-}
+/* CHANGED: Removed hover styles since glow is always on */
 
 .btn:active:after {
   background: transparent;
@@ -70,4 +72,4 @@ html, body {
 .btn:active {
   color: #000;
   font-weight: bold;
-    }
+}
