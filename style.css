@@ -1,146 +1,86 @@
-/* 
-  Project: Auto-Glowing CSS Button
-  Description: Button with continuous rainbow glow animation
-*/
-
-/* Reset and base styles */
-html, body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: #161616;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
-}
-
-/* Glowing Button Styles */
+/* Button with constant glow effect */
 .btn {
-  margin: 20px;
-  padding: 18px 45px;
+  margin: 100px;
+  padding: 15px 40px;
   border: none;
   outline: none;
   color: #FFF;
   cursor: pointer;
   position: relative;
-  z-index: 1;
+  z-index: 0;
   border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  overflow: hidden;
+  /* Add glowing border */
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3);
 }
 
-/* Button base layer */
+/* Base layer */
 .btn::after {
   content: "";
   z-index: -1;
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #222;
+  background-color: #333;
   left: 0;
   top: 0;
   border-radius: 10px;
 }
 
-/* Glow layer - always visible */
+/* Constant glow layer */
 .btn::before {
   content: "";
   background: linear-gradient(
     45deg,
     #FF0000, #FF7300, #FFFB00, #48FF00,
-    #00FFD5, #002BFF, #7A00FF, #FF00C8, #FF0000
+    #00FFD5, #002BFF, #FF00C8, #FF0000
   );
   position: absolute;
-  top: -3px;
-  left: -3px;
-  background-size: 400%;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
   z-index: -1;
-  width: calc(100% + 6px);
-  height: calc(100% + 6px);
-  filter: blur(10px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(8px);
   animation: glowing 20s linear infinite;
-  border-radius: 12px;
-  opacity: 1;
+  border-radius: 10px;
+  opacity: 1; /* Always visible */
+  /* Additional glow effect */
   box-shadow: 
-    0 0 5px #FF0000,
-    0 0 10px #FF7300,
-    0 0 15px #FFFB00,
-    0 0 20px #48FF00,
-    0 0 25px #00FFD5,
-    0 0 30px #002BFF,
-    0 0 35px #7A00FF,
-    0 0 40px #FF00C8;
+    0 0 10px #FF0000,
+    0 0 20px #FF7300,
+    0 0 30px #FFFB00;
 }
 
-/* Glow animation */
+/* Animation */
 @keyframes glowing {
   0% {
     background-position: 0 0;
     box-shadow: 
       0 0 10px #FF0000,
       0 0 20px #FF7300,
-      0 0 30px #FFFB00,
-      0 0 40px #48FF00;
-  }
-  25% {
-    box-shadow: 
-      0 0 20px #00FFD5,
-      0 0 30px #002BFF,
-      0 0 40px #7A00FF,
-      0 0 50px #FF00C8;
+      0 0 30px #FFFB00;
   }
   50% {
     background-position: 400% 0;
     box-shadow: 
-      0 0 30px #FF00C8,
-      0 0 40px #FF0000,
-      0 0 50px #FF7300,
-      0 0 60px #FFFB00;
-  }
-  75% {
-    box-shadow: 
-      0 0 20px #48FF00,
-      0 0 30px #00FFD5,
-      0 0 40px #002BFF,
-      0 0 50px #7A00FF;
+      0 0 20px #00FFD5,
+      0 0 30px #002BFF,
+      0 0 40px #FF00C8;
   }
   100% {
     background-position: 0 0;
     box-shadow: 
       0 0 10px #FF0000,
       0 0 20px #FF7300,
-      0 0 30px #FFFB00,
-      0 0 40px #48FF00;
+      0 0 30px #FFFB00;
   }
 }
 
-/* Click effect */
+/* Active state (when clicked) */
 .btn:active {
-  transform: scale(0.96);
+  transform: scale(0.98);
 }
 .btn:active::after {
-  background: #111;
-}
-
-/* Optional hover enhancement */
-.btn:hover {
-  color: #FFF;
-  text-shadow: 0 0 10px #FFF;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .btn {
-    padding: 15px 35px;
-    font-size: 1rem;
-  }
-  .btn::before {
-    filter: blur(8px);
-  }
-  }
+  background: transparent;
+    }
